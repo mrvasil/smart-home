@@ -1,3 +1,5 @@
 app_old/
 my_ya/
 /secrets.py
+/.gitignore
+__pycache__

@@ -68,7 +68,7 @@ class App(customtkinter.CTk):
             print(value)
             
         frame_1 = customtkinter.CTkFrame(master=self.home_frame)
-        frame_1.pack(pady=90, padx=60, expand=True)
+        frame_1.grid(row=0, column=0, padx=20, pady=10)
         label_1 = customtkinter.CTkLabel(master=frame_1, justify=customtkinter.LEFT)
         label_1.pack(pady=10, padx=10)
         progressbar_1 = customtkinter.CTkProgressBar(master=frame_1)
@@ -78,6 +78,18 @@ class App(customtkinter.CTk):
         slider_1 = customtkinter.CTkSlider(master=frame_1, command=slider_callback, from_=0, to=1)
         slider_1.pack(pady=10, padx=10)
         slider_1.set(0.5)
+
+        frame_2 = customtkinter.CTkFrame(master=self.home_frame)
+        frame_2.grid(row=0, column=1, padx=20, pady=10)
+        label_2 = customtkinter.CTkLabel(master=frame_2, justify=customtkinter.LEFT)
+        label_2.pack(pady=10, padx=10)
+        progressbar_2 = customtkinter.CTkProgressBar(master=frame_2)
+        progressbar_2.pack(pady=10, padx=10)
+        button_2 = customtkinter.CTkButton(master=frame_2, command=button_callback)
+        button_2.pack(pady=10, padx=10)
+        slider_2 = customtkinter.CTkSlider(master=frame_2, command=slider_callback, from_=0, to=1)
+        slider_2.pack(pady=10, padx=10)
+        slider_2.set(0.5)
 
         
 
