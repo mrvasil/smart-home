@@ -59,7 +59,7 @@ class App(customtkinter.CTk):
 
         # create home frame
         self.home_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
-    
+
         def button_callback():
             print("Button click")
 
@@ -144,12 +144,9 @@ class App(customtkinter.CTk):
     def change_appearance_mode_event(self, new_appearance_mode):
         customtkinter.set_appearance_mode(new_appearance_mode)
 
-def starts():
-    from ya_info import info1
-    global info
-    info = info1()
-    app = App()
-    app.mainloop()
-starts()
 
- 
+from ya_info import info1
+global info
+info = info1()
+app = App()
+app.mainloop()
