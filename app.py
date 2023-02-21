@@ -60,19 +60,23 @@ class App(customtkinter.CTk):
         # create home frame
         self.home_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
 
-        #def button_callback():
-        #    print("Button click")
-        #
-        #def slider_callback(value):
-        #    progressbar_1.set(value)
-        #    print(value)
+        global i_for_switch        
+        y, x, i_for_switch = 0, 0, 0
+        frame_sp, label_sp, switch_sp= [], [], []
+        switch_var_sp = []
 
-        frame_sp = []
-        label_sp = []
+        def switch_event():
+            #print(switch_var_sp[i_for_switch].get())
+            print('skibedi dop dop dop yes yes yes')
+
         for i in range(len(info[0])):
             frame_sp.append(customtkinter.CTkFrame(master=self.home_frame))
             label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info[1][i]))
-        y, x = 0, 0
+            if (info[0][i] == 'devices.types.light') or (info[0][i] == 'devices.types.socket') or (info[0][i] == 'devices.types.switch'):
+                switch_var_sp.append(customtkinter.StringVar(value="on"))
+                switch_sp.append(customtkinter.CTkSwitch(master=frame_sp[-1], text="ON/OFF", command=switch_event, variable=switch_var_sp[-1], onvalue="on", offvalue="off"))
+
+        i_for_switch = 0
         for i in range(len(info[0])):
             if i%2==0: 
                 y += 1
@@ -80,7 +84,11 @@ class App(customtkinter.CTk):
             frame_sp[i].grid(row=y, column=x, padx=20, pady=10, sticky="nsew")
             x += 1
             label_sp[i].pack(pady=10, padx=10)
-            
+            if (info[0][i] == 'devices.types.light') or (info[0][i] == 'devices.types.socket') or (info[0][i] == 'devices.types.switch'):
+                switch_sp[i_for_switch].pack(pady=10, padx=10)
+                i_for_switch += 1
+
+
 
         
 
@@ -89,17 +97,6 @@ class App(customtkinter.CTk):
         self.second_frame.grid_columnconfigure(0, weight=1)
         
 
-        self.second_frame_large_image_label = customtkinter.CTkLabel(self.second_frame, text="", image=self.large_test_image)
-        self.second_frame_large_image_label.grid(row=0, column=0, padx=20, pady=10)
-
-        self.second_frame_button_1 = customtkinter.CTkButton(self.second_frame, text="", image=self.image_icon_image)
-        self.second_frame_button_1.grid(row=1, column=0, padx=20, pady=10)
-        self.second_frame_button_2 = customtkinter.CTkButton(self.second_frame, text="CTkButton", image=self.image_icon_image, compound="right")
-        self.second_frame_button_2.grid(row=2, column=0, padx=20, pady=10)
-        self.second_frame_button_3 = customtkinter.CTkButton(self.second_frame, text="CTkButton", image=self.image_icon_image, compound="top")
-        self.second_frame_button_3.grid(row=3, column=0, padx=20, pady=10)
-        self.second_frame_button_4 = customtkinter.CTkButton(self.second_frame, text="CTkButton", image=self.image_icon_image, compound="bottom", anchor="w")
-        self.second_frame_button_4.grid(row=4, column=0, padx=20, pady=10)
 
         # create third frame
         self.third_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
@@ -107,8 +104,7 @@ class App(customtkinter.CTk):
         switch_var = customtkinter.StringVar(value="on")
         def switch_event():
             print(switch_var.get())
-        self.third_frame_switch_1 = customtkinter.CTkSwitch(self.third_frame, text="CTkSwitch", command=switch_event,
-                                           variable=switch_var, onvalue="on", offvalue="off")
+        self.third_frame_switch_1 = customtkinter.CTkSwitch(self.third_frame, text="ON/OFF", command=switch_event, variable=switch_var, onvalue="on", offvalue="off")
         self.third_frame_switch_1.pack(pady=10, padx=10)
 
 
