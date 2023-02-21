@@ -18,7 +18,7 @@ def slider_callback(value):
 frame_1 = customtkinter.CTkFrame(master=app)
 frame_1.pack(pady=20, padx=60, fill="both", expand=True)
 
-label_1 = customtkinter.CTkLabel(master=frame_1, justify=customtkinter.LEFT)
+label_1 = customtkinter.CTkLabel(master=frame_1, justify=customtkinter.LEFT, text='hello')
 label_1.pack(pady=10, padx=10)
 
 progressbar_1 = customtkinter.CTkProgressBar(master=frame_1)

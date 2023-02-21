@@ -67,18 +67,19 @@ class App(customtkinter.CTk):
         #    progressbar_1.set(value)
         #    print(value)
 
-        sp = []
-        for i in range(len(info)):
-            sp.append(customtkinter.CTkFrame(master=self.home_frame))
+        frame_sp = []
+        label_sp = []
+        for i in range(len(info[0])):
+            frame_sp.append(customtkinter.CTkFrame(master=self.home_frame))
+            label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info[1][i]))
         y, x = 0, 0
-        for i in range(len(info)):
+        for i in range(len(info[0])):
             if i%2==0: 
                 y += 1
                 x = 0
-            sp[i].grid(row=y, column=x, padx=20, pady=10)
+            frame_sp[i].grid(row=y, column=x, padx=20, pady=10)
             x += 1
-            #label_1 = customtkinter.CTkLabel(master=frame_1, justify=customtkinter.LEFT)
-            #label_1.pack(pady=10, padx=10)
+            label_sp[i].pack(pady=10, padx=10)
             #progressbar_1 = customtkinter.CTkProgressBar(master=frame_1)
             #progressbar_1.pack(pady=10, padx=10)
             #button_1 = customtkinter.CTkButton(master=frame_1, command=button_callback)
