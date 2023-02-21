@@ -77,17 +77,10 @@ class App(customtkinter.CTk):
             if i%2==0: 
                 y += 1
                 x = 0
-            frame_sp[i].grid(row=y, column=x, padx=20, pady=10)
+            frame_sp[i].grid(row=y, column=x, padx=20, pady=10, sticky="nsew")
             x += 1
             label_sp[i].pack(pady=10, padx=10)
-            #progressbar_1 = customtkinter.CTkProgressBar(master=frame_1)
-            #progressbar_1.pack(pady=10, padx=10)
-            #button_1 = customtkinter.CTkButton(master=frame_1, command=button_callback)
-            #button_1.pack(pady=10, padx=10)
-            #slider_1 = customtkinter.CTkSlider(master=frame_1, command=slider_callback, from_=0, to=1)
-            #slider_1.pack(pady=10, padx=10)
-            #slider_1.set(0.5)
-
+            
 
         
 
