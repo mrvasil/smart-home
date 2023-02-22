@@ -26,7 +26,7 @@ class App(customtkinter.CTk):
         image_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "test_images")
         self.logo_image = customtkinter.CTkImage(Image.open(os.path.join(image_path, "logo.png")), size=(35, 35))
         self.large_test_image = customtkinter.CTkImage(Image.open(os.path.join(image_path, "large_test_image.png")), size=(500, 150))
-        self.image_icon_image = customtkinter.CTkImage(Image.open(os.path.join(image_path, "image_icon_light.png")), size=(20, 20))
+        self.image_icon_image = customtkinter.CTkImage(Image.open(os.path.join(image_path, "play_light.png")), size=(20, 20))
         self.home_image = customtkinter.CTkImage(light_image=Image.open(os.path.join(image_path, "home_dark.png")),
                                                  dark_image=Image.open(os.path.join(image_path, "home_light.png")), size=(20, 20))
         self.chat_image = customtkinter.CTkImage(light_image=Image.open(os.path.join(image_path, "chat_dark.png")),
@@ -99,16 +99,20 @@ class App(customtkinter.CTk):
 
         # create second frame
         self.second_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
-        self.second_frame.grid_columnconfigure(0, weight=1)
-        frame_sp, label_sp = [], []
-
-        for i in range(len(info[3][1])):
+        #self.second_frame.grid_columnconfigure(0, weight=1)
+        frame_sp, label_sp, button_sp = [], [], []
+        x, y = 0, 0
+        for i in range(len(info[3][0])):
+            if i%3==0: 
+                y += 1
+                x = 0
+            x+=1
             frame_sp.append(customtkinter.CTkFrame(master=self.second_frame))
             label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info[3][1][i]))
-            frame_sp[i].grid(row=i, column=1, padx=45, pady=10, sticky="nsew")
-            frame_sp[i].grid_propagate(0)
-            label_sp[i].pack(pady=10, padx=200)
-            
+            frame_sp[i].grid(row=y, column=x, padx=20, pady=10, sticky="nsew")
+            label_sp[i].pack(pady=0, padx=0)
+            button_sp.append(customtkinter.CTkButton(master=frame_sp[-1], text="", image=self.image_icon_image))
+            button_sp[-1].pack(pady=10, padx=10)
 
         # create third frame
         self.third_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
