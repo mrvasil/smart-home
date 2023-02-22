@@ -54,4 +54,4 @@ def info1():
     #           'c486ecba-baab-4d34-81e2-a751280721de', 'caac70ed-81f7-400b-947d-9ed35897c66e', 'd66e4886-5a2a-4573-af0a-514f380d96b9']) #id устройств
     #sp.append([['123456789id'], ['name']]) #Названия и имена сценариев
     return sp
-
+info1()

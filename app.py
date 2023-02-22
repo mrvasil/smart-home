@@ -100,18 +100,21 @@ class App(customtkinter.CTk):
         # create second frame
         self.second_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
         #self.second_frame.grid_columnconfigure(0, weight=1)
-        frame_sp, label_sp, button_sp = [], [], []
+        frame_sp, label_sp, button_sp, for_button_sp = [], [], [], []
         x, y = 0, 0
+        def button_function(a):
+            print(a)
         for i in range(len(info[3][0])):
             if i%3==0: 
                 y += 1
                 x = 0
             x+=1
+            for_button_sp.append(functools.partial(button_function, info[3][0][i]))
             frame_sp.append(customtkinter.CTkFrame(master=self.second_frame))
             label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info[3][1][i]))
             frame_sp[i].grid(row=y, column=x, padx=20, pady=10, sticky="nsew")
             label_sp[i].pack(pady=0, padx=0)
-            button_sp.append(customtkinter.CTkButton(master=frame_sp[-1], text="", image=self.image_icon_image))
+            button_sp.append(customtkinter.CTkButton(master=frame_sp[-1], text="", image=self.image_icon_image, command=for_button_sp[-1]))
             button_sp[-1].pack(pady=10, padx=10)
 
         # create third frame
