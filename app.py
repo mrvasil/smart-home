@@ -4,6 +4,8 @@ import os
 from PIL import Image
 import authorization
 import webbrowser
+import sys
+import functools
 
 
 
@@ -12,7 +14,7 @@ class App(customtkinter.CTk):
         super().__init__()
 
         self.title("Smart home")
-        self.geometry("700x450")
+        self.geometry("900x550")
 
         # set grid layout 1x2
         self.grid_rowconfigure(0, weight=1)
@@ -62,20 +64,22 @@ class App(customtkinter.CTk):
 
         global i_for_switch        
         y, x, i_for_switch = 0, 0, 0
-        frame_sp, label_sp, switch_sp= [], [], []
+        frame_sp, label_sp, switch_sp, for_switch_sp = [], [], [], []
         switch_var_sp = []
 
-        print(info)
-        def switch_event():
+        def switch_event(a):
             #print(switch_var_sp[i_for_switch].get())
-            print('skibedi dop dop dop yes yes yes')
+            print(a)
 
-        for i in range(len(info[3][0])):
+        for i in range(len(info[0])):
             frame_sp.append(customtkinter.CTkFrame(master=self.home_frame))
             label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info[1][i]))
             if (info[0][i] == 'devices.types.light') or (info[0][i] == 'devices.types.socket') or (info[0][i] == 'devices.types.switch'):
                 switch_var_sp.append(customtkinter.StringVar(value="on"))
-                switch_sp.append(customtkinter.CTkSwitch(master=frame_sp[-1], text="ON/OFF", command=switch_event, variable=switch_var_sp[-1], onvalue="on", offvalue="off"))
+
+                for_switch_sp.append(functools.partial(switch_event, info[2][i]))
+    
+                switch_sp.append(customtkinter.CTkSwitch(master=frame_sp[-1], text="ON/OFF", command=for_switch_sp[-1], variable=switch_var_sp[-1], onvalue="on", offvalue="off"))
                 switch_sp[i_for_switch].pack(pady=10, padx=10)
                 i_for_switch += 1
             if i%2==0: 
@@ -94,10 +98,11 @@ class App(customtkinter.CTk):
         self.second_frame.grid_columnconfigure(0, weight=1)
         frame_sp, label_sp = [], []
 
-        for i in range(len(info[3][0])):
+        for i in range(len(info[3][1])):
             frame_sp.append(customtkinter.CTkFrame(master=self.second_frame))
             label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info[3][1][i]))
             frame_sp[i].grid(row=i, column=1, padx=45, pady=10, sticky="nsew")
+            frame_sp[i].grid_propagate(0)
             label_sp[i].pack(pady=10, padx=200)
 
 
