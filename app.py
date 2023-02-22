@@ -1,4 +1,5 @@
 import customtkinter
+import requests 
 import tkinter
 import os
 from PIL import Image
@@ -6,6 +7,7 @@ import authorization
 import webbrowser
 import sys
 import functools
+import json
 
 
 
@@ -68,18 +70,20 @@ class App(customtkinter.CTk):
         switch_var_sp = []
 
         def switch_event(a):
-            #print(switch_var_sp[i_for_switch].get())
-            print(a)
+            url = 'https://api.iot.yandex.net/v1.0/devices/actions'
+            s = requests.Session()
+            token = info[4]
+            headers={'Authorization': 'Bearer '+token, 'Content-Type': 'application/json'}
+            data1 = '''{"devices": [{"id": "'''+a[0]+'''","actions": [{"type": "devices.capabilities.on_off","state": {"instance": "on","value": '''+switch_var_sp[a[1]].get()+'''}}]}]}'''
+            r=requests.post(url,headers=headers,data=data1)
 
         for i in range(len(info[0])):
             frame_sp.append(customtkinter.CTkFrame(master=self.home_frame))
             label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info[1][i]))
-            if (info[0][i] == 'devices.types.light') or (info[0][i] == 'devices.types.socket') or (info[0][i] == 'devices.types.switch'):
-                switch_var_sp.append(customtkinter.StringVar(value="on"))
-
-                for_switch_sp.append(functools.partial(switch_event, info[2][i]))
-    
-                switch_sp.append(customtkinter.CTkSwitch(master=frame_sp[-1], text="ON/OFF", command=for_switch_sp[-1], variable=switch_var_sp[-1], onvalue="on", offvalue="off"))
+            if (info[0][i] == 'devices.types.light') or (info[0][i] == 'devices.types.socket'):
+                switch_var_sp.append(customtkinter.StringVar(value=str(info[5][i_for_switch]).lower()))
+                for_switch_sp.append(functools.partial(switch_event, [info[2][i], i_for_switch]))
+                switch_sp.append(customtkinter.CTkSwitch(master=frame_sp[-1], text="ON/OFF", command=for_switch_sp[-1], variable=switch_var_sp[-1], onvalue="true", offvalue="false"))
                 switch_sp[i_for_switch].pack(pady=10, padx=10)
                 i_for_switch += 1
             if i%2==0: 
@@ -104,7 +108,7 @@ class App(customtkinter.CTk):
             frame_sp[i].grid(row=i, column=1, padx=45, pady=10, sticky="nsew")
             frame_sp[i].grid_propagate(0)
             label_sp[i].pack(pady=10, padx=200)
-
+            
 
         # create third frame
         self.third_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")

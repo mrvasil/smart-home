@@ -29,7 +29,7 @@ def index():
             f = open("secrets.py", 'a').write("""\ntoken='"""+str(token)+"""'""")
             
 
-        return text#jsonify(post(baseurl + "token", data).json())
+        return text
     else:
         return redirect(baseurl + "authorize?response_type=code&client_id={}".format(client_id))
 

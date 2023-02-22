@@ -13,7 +13,7 @@ def info1():
     r=requests.get(url,headers=headers)
     js=json.loads(r.text)
 ##
-    devices, dev=js.get('rooms', 0), []
+    devices, dev, state_sp=js.get('rooms', 0), [], []
     for i in range(0, len(devices), 1):
         dev.append(devices[i]["devices"])
     devices = sum(dev, [])
@@ -25,6 +25,12 @@ def info1():
         r=requests.get(url,headers=headers)
         sp_info.append(json.loads(r.text).get('type', 0))
         sp_name.append(json.loads(r.text).get('name', 0))
+        if (sp_info[-1] == 'devices.types.light'):
+            state_sp.append(json.loads(r.text)["capabilities"][2]["state"]["value"])
+        if  (sp_info[-1] == 'devices.types.socket'):
+            state_sp.append(json.loads(r.text)["capabilities"][0]["state"]["value"])
+
+
 ##
     scenarios1=js["scenarios"]
     id, name, scenarios = [], [], []
@@ -38,6 +44,8 @@ def info1():
     sp.append(sp_name)
     sp.append(devices)
     sp.append(scenarios)
+    sp.append(secrets.token)
+    sp.append(state_sp)
 #
     #sp=[]
     #sp.append(['devices.types.light', 'devices.types.socket', 'devices.types.smart_speaker.yandex.station.mini_2', 'devices.types.light', 'devices.types.light', 'devices.types.light']) #типы устройств
