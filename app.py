@@ -75,18 +75,14 @@ class App(customtkinter.CTk):
             if (info[0][i] == 'devices.types.light') or (info[0][i] == 'devices.types.socket') or (info[0][i] == 'devices.types.switch'):
                 switch_var_sp.append(customtkinter.StringVar(value="on"))
                 switch_sp.append(customtkinter.CTkSwitch(master=frame_sp[-1], text="ON/OFF", command=switch_event, variable=switch_var_sp[-1], onvalue="on", offvalue="off"))
-
-        i_for_switch = 0
-        for i in range(len(info[0])):
+                switch_sp[i_for_switch].pack(pady=10, padx=10)
+                i_for_switch += 1
             if i%2==0: 
                 y += 1
                 x = 0
             frame_sp[i].grid(row=y, column=x, padx=20, pady=10, sticky="nsew")
             x += 1
             label_sp[i].pack(pady=10, padx=10)
-            if (info[0][i] == 'devices.types.light') or (info[0][i] == 'devices.types.socket') or (info[0][i] == 'devices.types.switch'):
-                switch_sp[i_for_switch].pack(pady=10, padx=10)
-                i_for_switch += 1
 
 
 
