@@ -65,6 +65,7 @@ class App(customtkinter.CTk):
         frame_sp, label_sp, switch_sp= [], [], []
         switch_var_sp = []
 
+        print(info)
         def switch_event():
             #print(switch_var_sp[i_for_switch].get())
             print('skibedi dop dop dop yes yes yes')
@@ -91,7 +92,13 @@ class App(customtkinter.CTk):
         # create second frame
         self.second_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
         self.second_frame.grid_columnconfigure(0, weight=1)
-        
+        frame_sp, label_sp = [], []
+
+        for i in range(len(info[0])):
+            frame_sp.append(customtkinter.CTkFrame(master=self.second_frame))
+            label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info[3][1][i]))
+            frame_sp[i].grid(row=i, column=1, padx=45, pady=10, sticky="nsew")
+            label_sp[i].pack(pady=10, padx=200)
 
 
         # create third frame
