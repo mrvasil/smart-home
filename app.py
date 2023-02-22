@@ -70,7 +70,7 @@ class App(customtkinter.CTk):
             #print(switch_var_sp[i_for_switch].get())
             print('skibedi dop dop dop yes yes yes')
 
-        for i in range(len(info[0])):
+        for i in range(len(info[3][0])):
             frame_sp.append(customtkinter.CTkFrame(master=self.home_frame))
             label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info[1][i]))
             if (info[0][i] == 'devices.types.light') or (info[0][i] == 'devices.types.socket') or (info[0][i] == 'devices.types.switch'):
@@ -94,7 +94,7 @@ class App(customtkinter.CTk):
         self.second_frame.grid_columnconfigure(0, weight=1)
         frame_sp, label_sp = [], []
 
-        for i in range(len(info[0])):
+        for i in range(len(info[3][0])):
             frame_sp.append(customtkinter.CTkFrame(master=self.second_frame))
             label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info[3][1][i]))
             frame_sp[i].grid(row=i, column=1, padx=45, pady=10, sticky="nsew")

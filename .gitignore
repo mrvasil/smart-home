@@ -3,3 +3,4 @@ my_ya/
 /secrets.py
 /.gitignore
 __pycache__
+/examples
