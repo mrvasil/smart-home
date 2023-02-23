@@ -121,8 +121,8 @@ class App(customtkinter.CTk):
             if i%3==0: 
                 y += 1
                 x = 0
+            x+=1
             frame_sp[i].grid(row=y, column=x, padx=20, pady=10, sticky="nsew")
-            x += 1
 
 
 
