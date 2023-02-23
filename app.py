@@ -87,49 +87,57 @@ class App(customtkinter.CTk):
                                                       image=self.add_user_image, anchor="w", command=self.frame_3_button_event)
         self.frame_3_button.grid(row=3, column=0, sticky="ew")
 
+        self.frame_4_button = customtkinter.CTkButton(self.navigation_frame, text="Обновить", command=self.update_button)
+        self.frame_4_button.grid(row=5, column=0, padx=20, pady=20, sticky="s")
+
         self.appearance_mode_menu = customtkinter.CTkOptionMenu(self.navigation_frame, values=["System", "Light", "Dark"], command=self.change_appearance_mode_event)
         self.appearance_mode_menu.grid(row=6, column=0, padx=20, pady=20, sticky="s")
 
         # create home frame
-        #self.home_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
         self.home_frame = ScrollableLabelButtonFrame(self, corner_radius=0, fg_color="transparent")
-        #self.home_frame.grid(row=0, column=2, padx=0, pady=0, sticky="nsew")
-        global i_for_switch        
-        y, x, i_for_switch = 0, 0, 0
-        frame_sp, label_sp, switch_sp, for_switch_sp, label2_sp, image_sp = [], [], [], [], [], []
-        switch_var_sp = []
+        global all1
+        def all1():
+            global i_for_switch        
+            y, x, i_for_switch = 0, 0, 0
+            frame_sp, label_sp, switch_sp, for_switch_sp, label2_sp, image_sp = [], [], [], [], [], []
+            switch_var_sp = []
 
-        def switch_event(a):
-            url = 'https://api.iot.yandex.net/v1.0/devices/actions'
-            s = requests.Session()
-            token = info[4]
-            headers={'Authorization': 'Bearer '+token, 'Content-Type': 'application/json'}
-            data1 = '''{"devices": [{"id": "'''+a[0]+'''","actions": [{"type": "devices.capabilities.on_off","state": {"instance": "on","value": '''+switch_var_sp[a[1]].get()+'''}}]}]}'''
-            r=requests.post(url,headers=headers,data=data1)
+            def switch_event(a):
+                url = 'https://api.iot.yandex.net/v1.0/devices/actions'
+                s = requests.Session()
+                token = info[4]
+                headers={'Authorization': 'Bearer '+token, 'Content-Type': 'application/json'}
+                data1 = '''{"devices": [{"id": "'''+a[0]+'''","actions": [{"type": "devices.capabilities.on_off","state": {"instance": "on","value": '''+switch_var_sp[a[1]].get()+'''}}]}]}'''
+                r=requests.post(url,headers=headers,data=data1)
 
-        for i in range(len(info[0])): 
-            frame_sp.append(customtkinter.CTkFrame(master=self.home_frame))
-            label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info[1][i]))
-            label_sp[i].pack(pady=6, padx=10)
-            if (info[0][i] == 'devices.types.light') or (info[0][i] == 'devices.types.socket'): 
-                switch_var_sp.append(customtkinter.StringVar(value=str(info[5][i_for_switch]).lower()))
-                for_switch_sp.append(functools.partial(switch_event, [info[2][i], i_for_switch]))
-                switch_sp.append(customtkinter.CTkSwitch(master=frame_sp[-1], text="ON/OFF", command=for_switch_sp[-1], variable=switch_var_sp[-1], onvalue="true", offvalue="false"))
-                switch_sp[i_for_switch].pack(pady=6, padx=10)
-                i_for_switch += 1
-                if info[6][i] == 'offline':
-                    label2_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text="offline"))
-                    label2_sp[-1].pack(pady=6, padx=10)
+            for i in range(len(info[0])): 
+                frame_sp.append(customtkinter.CTkFrame(master=self.home_frame))
+                label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info[1][i]))
+                label_sp[i].pack(pady=6, padx=10)
+                if (info[0][i] == 'devices.types.light') or (info[0][i] == 'devices.types.socket'): 
+                    switch_var_sp.append(customtkinter.StringVar(value=str(info[5][i_for_switch]).lower()))
+                    for_switch_sp.append(functools.partial(switch_event, [info[2][i], i_for_switch]))
+                    switch_sp.append(customtkinter.CTkSwitch(master=frame_sp[-1], text="ON/OFF", command=for_switch_sp[-1], variable=switch_var_sp[-1], onvalue="true", offvalue="false"))
+                    switch_sp[i_for_switch].pack(pady=6, padx=10)
+                    i_for_switch += 1
+                    if info[6][i] == 'offline':
+                        label2_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text="offline"))
+                        label2_sp[-1].pack(pady=6, padx=10)
 
-            if 'devices.types.smart_speaker' in info[0][i]:
-                image_sp.append(customtkinter.CTkLabel(frame_sp[-1], text="", image=self.add_station_image)) 
-                image_sp[-1].pack(padx=0, pady=10)
-            
-            if i%3==0: 
-                y += 1
-                x = 0
-            x+=1
-            frame_sp[i].grid(row=y, column=x, padx=20, pady=10, sticky="nsew")
+                if 'devices.types.smart_speaker' in info[0][i]:
+                    image_sp.append(customtkinter.CTkLabel(frame_sp[-1], text="", image=self.add_station_image)) 
+                    image_sp[-1].pack(padx=0, pady=10)
+
+                if i%3==0: 
+                    y += 1
+                    x = 0
+                x+=1
+                frame_sp[i].grid(row=y, column=x, padx=20, pady=10, sticky="nsew")
+
+        all1()
+
+        
+
 
 
 
@@ -138,27 +146,29 @@ class App(customtkinter.CTk):
         # create second frame
         # self.second_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
         self.second_frame = ScrollableLabelButtonFrame(self, corner_radius=0, fg_color="transparent")
+        global all2
+        def all2():
+            frame_sp, label_sp, button_sp, for_button_sp = [], [], [], []
+            x, y = 0, 0
+            def button_function(a):
+                url = 'https://api.iot.yandex.net/v1.0/scenarios/'+a+'/actions'
+                s = requests.Session()
+                headers={'Authorization': 'Bearer '+info[4]}
+                r=requests.post(url,headers=headers)
 
-        frame_sp, label_sp, button_sp, for_button_sp = [], [], [], []
-        x, y = 0, 0
-        def button_function(a):
-            url = 'https://api.iot.yandex.net/v1.0/scenarios/'+a+'/actions'
-            s = requests.Session()
-            headers={'Authorization': 'Bearer '+info[4]}
-            r=requests.post(url,headers=headers)
-
-        for i in range(len(info[3][0])):
-            if i%2==0: 
-                y += 1
-                x = 0
-            x+=1
-            for_button_sp.append(functools.partial(button_function, info[3][0][i]))
-            frame_sp.append(customtkinter.CTkFrame(master=self.second_frame))
-            label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info[3][1][i]))
-            frame_sp[i].grid(row=y, column=x, padx=20, pady=10, sticky="nsew")
-            label_sp[i].pack(pady=0, padx=0)
-            button_sp.append(customtkinter.CTkButton(master=frame_sp[-1], text="", image=self.image_icon_image, command=for_button_sp[-1]))
-            button_sp[-1].pack(pady=20, padx=10)
+            for i in range(len(info[3][0])):
+                if i%2==0: 
+                    y += 1
+                    x = 0
+                x+=1
+                for_button_sp.append(functools.partial(button_function, info[3][0][i]))
+                frame_sp.append(customtkinter.CTkFrame(master=self.second_frame))
+                label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info[3][1][i]))
+                frame_sp[i].grid(row=y, column=x, padx=20, pady=10, sticky="nsew")
+                label_sp[i].pack(pady=0, padx=0)
+                button_sp.append(customtkinter.CTkButton(master=frame_sp[-1], text="", image=self.image_icon_image, command=for_button_sp[-1]))
+                button_sp[-1].pack(pady=20, padx=10)
+        all2()
 
         # create third frame
         self.third_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
@@ -202,6 +212,12 @@ class App(customtkinter.CTk):
 
     def frame_3_button_event(self):
         self.select_frame_by_name("frame_3")
+
+    def update_button(self):
+        global info
+        info = info1()
+        all1()
+        all2()
 
     def change_appearance_mode_event(self, new_appearance_mode):
         customtkinter.set_appearance_mode(new_appearance_mode)
