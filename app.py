@@ -155,12 +155,13 @@ class App(customtkinter.CTk):
 
         # create third frame
         self.third_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
- 
         switch_var = customtkinter.StringVar(value="on")
-        def switch_event():
-            print(switch_var.get())
-        self.third_frame_switch_1 = customtkinter.CTkSwitch(self.third_frame, text="ON/OFF", command=switch_event, variable=switch_var, onvalue="on", offvalue="off")
-        self.third_frame_switch_1.pack(pady=10, padx=10)
+        def leave():
+            open('secrets.txt', 'w').close()
+            f = open("secrets.txt", 'a').write('\n')
+            exit()
+        self.third_frame_button_1 = customtkinter.CTkButton(self.third_frame, text="Выйти из аккаунта", command=leave)
+        self.third_frame_button_1.pack(pady=10, padx=10)
 
 
         # select default frame
@@ -202,5 +203,6 @@ class App(customtkinter.CTk):
 from ya_info import info1
 global info
 info = info1()
-app = App()
-app.mainloop()
+if info!=0:    
+    app = App()
+    app.mainloop()

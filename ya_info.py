@@ -1,15 +1,15 @@
 import requests
-import secrets
 import json
 def info1():
-    if len(secrets.token) < 6:
+    token=str(open("secrets.txt").readlines()[-1])
+    if len(token) < 6:
         import start
         start.start()
         return 0
     sp = []
     url = 'https://api.iot.yandex.net/v1.0/user/info'
     s = requests.Session()
-    headers={'Authorization': 'Bearer '+secrets.token}
+    headers={'Authorization': 'Bearer '+token}
     r=requests.get(url,headers=headers)
     js=json.loads(r.text)
 ##
@@ -21,7 +21,7 @@ def info1():
     for i in range(len(devices)):
         s = requests.Session()
         url = 'https://api.iot.yandex.net/v1.0/devices/'+str(devices[i])
-        headers={'Authorization': 'Bearer '+secrets.token}
+        headers={'Authorization': 'Bearer '+token}
         r=requests.get(url,headers=headers)
         offline_sp.append(json.loads(r.text).get('state', 0))
         sp_info.append(json.loads(r.text).get('type', 0))
@@ -45,7 +45,7 @@ def info1():
     sp.append(sp_name)
     sp.append(devices)
     sp.append(scenarios)
-    sp.append(secrets.token)
+    sp.append(token)
     sp.append(state_sp)
     sp.append(offline_sp)
 #

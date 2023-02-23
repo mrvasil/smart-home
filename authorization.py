@@ -26,7 +26,7 @@ def index():
         data = urlencode(data)
         token = post(baseurl + "token", data).json().get('access_token')
         if len(str(token)) > 6:
-            f = open("secrets.py", 'a').write("""\ntoken='"""+str(token)+"""'""")
+            f = open("secrets.txt", 'a').write(str(token))
             
 
         return text
