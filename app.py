@@ -60,6 +60,8 @@ class App(customtkinter.CTk):
                                                  dark_image=Image.open(os.path.join(image_path, "chat_light.png")), size=(20, 20))
         self.add_user_image = customtkinter.CTkImage(light_image=Image.open(os.path.join(image_path, "settings_dark.png")),
                                                      dark_image=Image.open(os.path.join(image_path, "settings_light.png")), size=(20, 20))
+        self.add_station_image = customtkinter.CTkImage(light_image=Image.open(os.path.join(image_path, "station_dark.png")),
+                                                     dark_image=Image.open(os.path.join(image_path, "station_light.png")), size=(44, 44))
 
         # create navigation frame
         self.navigation_frame = customtkinter.CTkFrame(self, corner_radius=0)
@@ -94,7 +96,7 @@ class App(customtkinter.CTk):
         #self.home_frame.grid(row=0, column=2, padx=0, pady=0, sticky="nsew")
         global i_for_switch        
         y, x, i_for_switch = 0, 0, 0
-        frame_sp, label_sp, switch_sp, for_switch_sp, label2_sp = [], [], [], [], []
+        frame_sp, label_sp, switch_sp, for_switch_sp, label2_sp, image_sp = [], [], [], [], [], []
         switch_var_sp = []
 
         def switch_event(a):
@@ -108,16 +110,21 @@ class App(customtkinter.CTk):
         for i in range(len(info[0])): 
             frame_sp.append(customtkinter.CTkFrame(master=self.home_frame))
             label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info[1][i]))
-            label_sp[i].pack(pady=10, padx=10)
+            label_sp[i].pack(pady=6, padx=10)
             if (info[0][i] == 'devices.types.light') or (info[0][i] == 'devices.types.socket'): 
                 switch_var_sp.append(customtkinter.StringVar(value=str(info[5][i_for_switch]).lower()))
                 for_switch_sp.append(functools.partial(switch_event, [info[2][i], i_for_switch]))
                 switch_sp.append(customtkinter.CTkSwitch(master=frame_sp[-1], text="ON/OFF", command=for_switch_sp[-1], variable=switch_var_sp[-1], onvalue="true", offvalue="false"))
-                switch_sp[i_for_switch].pack(pady=10, padx=10)
+                switch_sp[i_for_switch].pack(pady=6, padx=10)
                 i_for_switch += 1
                 if info[6][i] == 'offline':
                     label2_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text="offline"))
-                    label2_sp[-1].pack(pady=10, padx=10)
+                    label2_sp[-1].pack(pady=6, padx=10)
+
+            if 'devices.types.smart_speaker' in info[0][i]:
+                image_sp.append(customtkinter.CTkLabel(frame_sp[-1], text="", image=self.add_station_image)) 
+                image_sp[-1].pack(padx=6, pady=10)
+            
             if i%3==0: 
                 y += 1
                 x = 0
