@@ -3,4 +3,9 @@ my_ya/
 /secrets.py
 /.gitignore
 __pycache__
-/examples
+examples/
+dist/
+build/
+/*.spec
+/requirements.txt
+.idea/
