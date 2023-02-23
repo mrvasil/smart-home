@@ -13,7 +13,7 @@ def info1():
     r=requests.get(url,headers=headers)
     js=json.loads(r.text)
 ##
-    devices, dev, state_sp=js.get('rooms', 0), [], []
+    devices, dev, state_sp, offline_sp = js.get('rooms', 0), [], [], []
     for i in range(0, len(devices), 1):
         dev.append(devices[i]["devices"])
     devices = sum(dev, [])
@@ -23,6 +23,7 @@ def info1():
         url = 'https://api.iot.yandex.net/v1.0/devices/'+str(devices[i])
         headers={'Authorization': 'Bearer '+secrets.token}
         r=requests.get(url,headers=headers)
+        offline_sp.append(json.loads(r.text).get('state', 0))
         sp_info.append(json.loads(r.text).get('type', 0))
         sp_name.append(json.loads(r.text).get('name', 0))
         if (sp_info[-1] == 'devices.types.light'):
@@ -46,6 +47,7 @@ def info1():
     sp.append(scenarios)
     sp.append(secrets.token)
     sp.append(state_sp)
+    sp.append(offline_sp)
 #
     #sp=[]
     #sp.append(['devices.types.light', 'devices.types.socket', 'devices.types.smart_speaker.yandex.station.mini_2', 'devices.types.light', 'devices.types.light', 'devices.types.light']) #типы устройств
@@ -54,4 +56,3 @@ def info1():
     #           'c486ecba-baab-4d34-81e2-a751280721de', 'caac70ed-81f7-400b-947d-9ed35897c66e', 'd66e4886-5a2a-4573-af0a-514f380d96b9']) #id устройств
     #sp.append([['123456789id'], ['name']]) #Названия и имена сценариев
     return sp
-info1()

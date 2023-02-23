@@ -66,7 +66,7 @@ class App(customtkinter.CTk):
 
         global i_for_switch        
         y, x, i_for_switch = 0, 0, 0
-        frame_sp, label_sp, switch_sp, for_switch_sp = [], [], [], []
+        frame_sp, label_sp, switch_sp, for_switch_sp, label2_sp = [], [], [], [], []
         switch_var_sp = []
 
         def switch_event(a):
@@ -80,18 +80,21 @@ class App(customtkinter.CTk):
         for i in range(len(info[0])):
             frame_sp.append(customtkinter.CTkFrame(master=self.home_frame))
             label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info[1][i]))
+            label_sp[i].pack(pady=10, padx=10)
             if (info[0][i] == 'devices.types.light') or (info[0][i] == 'devices.types.socket'):
                 switch_var_sp.append(customtkinter.StringVar(value=str(info[5][i_for_switch]).lower()))
                 for_switch_sp.append(functools.partial(switch_event, [info[2][i], i_for_switch]))
                 switch_sp.append(customtkinter.CTkSwitch(master=frame_sp[-1], text="ON/OFF", command=for_switch_sp[-1], variable=switch_var_sp[-1], onvalue="true", offvalue="false"))
                 switch_sp[i_for_switch].pack(pady=10, padx=10)
                 i_for_switch += 1
-            if i%2==0: 
+                if info[6][i] == 'offline':
+                    label2_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text="offline"))
+                    label2_sp[-1].pack(pady=10, padx=10)
+            if i%3==0: 
                 y += 1
                 x = 0
             frame_sp[i].grid(row=y, column=x, padx=20, pady=10, sticky="nsew")
             x += 1
-            label_sp[i].pack(pady=10, padx=10)
 
 
 
@@ -103,7 +106,11 @@ class App(customtkinter.CTk):
         frame_sp, label_sp, button_sp, for_button_sp = [], [], [], []
         x, y = 0, 0
         def button_function(a):
-            print(a)
+            url = 'https://api.iot.yandex.net/v1.0/scenarios/'+a+'/actions'
+            s = requests.Session()
+            headers={'Authorization': 'Bearer '+info[4]}
+            r=requests.post(url,headers=headers)
+
         for i in range(len(info[3][0])):
             if i%3==0: 
                 y += 1
