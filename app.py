@@ -61,7 +61,7 @@ class App(customtkinter.CTk):
         self.add_user_image = customtkinter.CTkImage(light_image=Image.open(os.path.join(image_path, "settings_dark.png")),
                                                      dark_image=Image.open(os.path.join(image_path, "settings_light.png")), size=(20, 20))
         self.add_station_image = customtkinter.CTkImage(light_image=Image.open(os.path.join(image_path, "station_dark.png")),
-                                                     dark_image=Image.open(os.path.join(image_path, "station_light.png")), size=(44, 44))
+                                                     dark_image=Image.open(os.path.join(image_path, "station_light.png")), size=(50, 50))
 
         # create navigation frame
         self.navigation_frame = customtkinter.CTkFrame(self, corner_radius=0)
@@ -123,7 +123,7 @@ class App(customtkinter.CTk):
 
             if 'devices.types.smart_speaker' in info[0][i]:
                 image_sp.append(customtkinter.CTkLabel(frame_sp[-1], text="", image=self.add_station_image)) 
-                image_sp[-1].pack(padx=6, pady=10)
+                image_sp[-1].pack(padx=0, pady=10)
             
             if i%3==0: 
                 y += 1
