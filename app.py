@@ -176,7 +176,7 @@ class App(customtkinter.CTk):
         def leave():
             open('secrets.txt', 'w').close()
             f = open("secrets.txt", 'a').write('\n')
-            exit()
+            app.destroy()
         self.third_frame_button_1 = customtkinter.CTkButton(self.third_frame, text="Выйти из аккаунта", command=leave)
         self.third_frame_button_1.pack(pady=10, padx=10)
 
