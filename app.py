@@ -229,6 +229,6 @@ info = info1()
 if info!=0:    
     app = App()
     app.iconbitmap("C:/Users/alexe/Downloads/logo.ico")
-    #app.tk.call('wm', 'iconphoto', app._w, tk.PhotoImage(file='C:/Users/alexe/Desktop/YandexID/test_images/logo.png'))
-    #app.iconphoto(True, tk.PhotoImage(file='C:/Users/alexe/Desktop/YandexID/test_images/logo.png'))
+    app.tk.call('wm', 'iconphoto', app._w, tk.PhotoImage(file='C:/Users/alexe/Desktop/YandexID/test_images/logo.png'))
+    app.iconphoto(True, tk.PhotoImage(file='C:/Users/alexe/Desktop/YandexID/test_images/logo.png'))
     app.mainloop()
