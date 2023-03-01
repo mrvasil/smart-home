@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, redirect
+from flask import *
 from requests import post
 import sys
 from urllib.parse import urlencode
@@ -12,10 +12,14 @@ client_id = secrets.client_id
 client_secret = secrets.client_secret
 baseurl = 'https://oauth.yandex.ru/'
 app = Flask(__name__)
-text = """<h1 style="margin: 0 auto;width: 1100px;" class="text-justify">Отлично, Вы авторизованны<br>Теперь закройте окно приложения и зайдите заново.</h1>"""
+text = """<h1 style="margin: 100;width: 1100px;" class="text-justify">Отлично, Вы авторизованны<br>Теперь нажмите "Я авторизовался" и откройте прилоежение заново.</h1>"""
+
+
+dict1={}
 
 @app.route('/')
 def index():
+    global dict1
     if request.args.get('code', False):
         data = {
             'grant_type': 'authorization_code',
@@ -26,14 +30,22 @@ def index():
         data = urlencode(data)
         token = post(baseurl + "token", data).json().get('access_token')
         if len(str(token)) > 6:
-            f = open("secrets.txt", 'a').write(str(token))
-            
-
+            dict1[request.cookies.get('secret_code')] = str(token)
+            print(dict1)
         return text
     else:
-        return redirect(baseurl + "authorize?response_type=code&client_id={}".format(client_id))
-
+        secret_code = request.args.get("secret")
+        dict1[secret_code] = ''
+        res1 = make_response(redirect(baseurl + "authorize?response_type=code&client_id={}".format(client_id)))
+        res1.set_cookie('secret_code',secret_code)
+        return res1
+    
+@app.route('/token')
+def token():
+    global dict1
+    return dict1[str(request.args.get("secret"))]
 
 def authorization():
-    app.run(host='127.0.0.1', port=8912)
-    exit()
+    app.run(host='0.0.0.0', port=8912)
+
+authorization()

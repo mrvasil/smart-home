@@ -3,7 +3,6 @@ import requests
 import tkinter as tk
 import os
 from PIL import Image
-import authorization
 import webbrowser
 import sys
 import functools
@@ -94,9 +93,9 @@ class App(customtkinter.CTk):
         self.appearance_mode_menu.grid(row=6, column=0, padx=20, pady=20, sticky="s")
 
         # create home frame
-        self.home_frame = ScrollableLabelButtonFrame(self, corner_radius=0, fg_color="transparent")
         global all1
         def all1():
+            self.home_frame = ScrollableLabelButtonFrame(self, corner_radius=0, fg_color="transparent")
             global i_for_switch        
             y, x, i_for_switch = 0, 0, 0
             frame_sp, label_sp, switch_sp, for_switch_sp, label2_sp, image_sp = [], [], [], [], [], []
@@ -145,9 +144,9 @@ class App(customtkinter.CTk):
 
         # create second frame
         # self.second_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
-        self.second_frame = ScrollableLabelButtonFrame(self, corner_radius=0, fg_color="transparent")
         global all2
         def all2():
+            self.second_frame = ScrollableLabelButtonFrame(self, corner_radius=0, fg_color="transparent")
             frame_sp, label_sp, button_sp, for_button_sp = [], [], [], []
             x, y = 0, 0
             def button_function(a):

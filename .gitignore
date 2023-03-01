@@ -8,5 +8,4 @@ dist/
 build/
 /*.spec
 .idea/
-/secrets.txt
 output/
