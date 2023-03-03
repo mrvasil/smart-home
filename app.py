@@ -93,6 +93,8 @@ class App(customtkinter.CTk):
         self.appearance_mode_menu.grid(row=6, column=0, padx=20, pady=20, sticky="s")
 
         # create home frame
+        #global ofline_sp
+        #ofline_sp = []
         global all1
         def all1():
             self.home_frame = ScrollableLabelButtonFrame(self, corner_radius=0, fg_color="transparent")
@@ -100,14 +102,20 @@ class App(customtkinter.CTk):
             y, x, i_for_switch = 0, 0, 0
             frame_sp, label_sp, switch_sp, for_switch_sp, label2_sp, image_sp = [], [], [], [], [], []
             switch_var_sp = []
-
+            global ofline_sp
+            ofline_sp = []
             def switch_event(a):
+                global ofline_sp
                 url = 'https://api.iot.yandex.net/v1.0/devices/actions'
                 s = requests.Session()
                 token = info[4]
                 headers={'Authorization': 'Bearer '+token, 'Content-Type': 'application/json'}
                 data1 = '''{"devices": [{"id": "'''+a[0]+'''","actions": [{"type": "devices.capabilities.on_off","state": {"instance": "on","value": '''+switch_var_sp[a[1]].get()+'''}}]}]}'''
                 r=requests.post(url,headers=headers,data=data1)
+                if (json.loads(r.text).get("devices")[0].get("capabilities")[0].get("state").get("action_result").get("status") == 'ERROR') and (a[1] not in ofline_sp):
+                    label2_sp.append(customtkinter.CTkLabel(master=frame_sp[a[2]], justify=customtkinter.LEFT, text="offline"))
+                    label2_sp[-1].pack(pady=6, padx=10)
+                    ofline_sp.append(a[1])
 
             for i in range(len(info[0])): 
                 frame_sp.append(customtkinter.CTkFrame(master=self.home_frame))
@@ -115,13 +123,11 @@ class App(customtkinter.CTk):
                 label_sp[i].pack(pady=6, padx=10)
                 if (info[0][i] == 'devices.types.light') or (info[0][i] == 'devices.types.socket'): 
                     switch_var_sp.append(customtkinter.StringVar(value=str(info[5][i_for_switch]).lower()))
-                    for_switch_sp.append(functools.partial(switch_event, [info[2][i], i_for_switch]))
+                    for_switch_sp.append(functools.partial(switch_event, [info[2][i], i_for_switch, i]))
                     switch_sp.append(customtkinter.CTkSwitch(master=frame_sp[-1], text="ON/OFF", command=for_switch_sp[-1], variable=switch_var_sp[-1], onvalue="true", offvalue="false"))
                     switch_sp[i_for_switch].pack(pady=6, padx=10)
                     i_for_switch += 1
-                    if info[6][i] == 'offline':
-                        label2_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text="offline"))
-                        label2_sp[-1].pack(pady=6, padx=10)
+                    
 
                 if 'devices.types.smart_speaker' in info[0][i]:
                     image_sp.append(customtkinter.CTkLabel(frame_sp[-1], text="", image=self.add_station_image)) 
@@ -220,7 +226,8 @@ class App(customtkinter.CTk):
 
     def change_appearance_mode_event(self, new_appearance_mode):
         customtkinter.set_appearance_mode(new_appearance_mode)
-
+def button_function():
+    print("ok")
 
 from ya_info import info1
 global info

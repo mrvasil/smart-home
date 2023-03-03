@@ -1,0 +1,501 @@
+{
+	'status': 'ok',
+	'request_id': '45ea981f-0787-4a95-8e31-212b4edb840f',
+	'rooms': [
+	{
+		'id': '256d0749-d0bd-4daf-80a6-ff9ee4f86ce5',
+		'name': 'Детская',
+		'household_id': 'fe5b78a5-6349-4331-abbf-67ea907b67dc',
+		'devices': ['5ddec6cf-c3a7-4650-bb09-8e23e3f74f4e', '68aab3ac-e0b6-4386-9b11-82c76535f5ca', 'b6a48753-7b36-4868-8a26-54f872aa1135', 'c486ecba-baab-4d34-81e2-a751280721de', 'caac70ed-81f7-400b-947d-9ed35897c66e', 'd66e4886-5a2a-4573-af0a-514f380d96b9']
+	}],
+	'groups': [
+	{
+		'id': 'c8e2fe66-7b43-46d5-a66c-cf4c9b6e5a20',
+		'name': 'Люстра',
+		'aliases': [],
+		'household_id': 'fe5b78a5-6349-4331-abbf-67ea907b67dc',
+		'type': 'devices.types.light',
+		'devices': ['5ddec6cf-c3a7-4650-bb09-8e23e3f74f4e', 'c486ecba-baab-4d34-81e2-a751280721de', 'caac70ed-81f7-400b-947d-9ed35897c66e', 'd66e4886-5a2a-4573-af0a-514f380d96b9'],
+		'capabilities': [
+		{
+			'retrievable': True,
+			'type': 'devices.capabilities.color_setting',
+			'parameters':
+			{
+				'color_model': 'hsv',
+				'temperature_k':
+				{
+					'min': 1500,
+					'max': 6500
+				}
+			},
+			'state':
+			{
+				'instance': 'temperature_k',
+				'value': 5600
+			}
+		},
+		{
+			'retrievable': True,
+			'type': 'devices.capabilities.on_off',
+			'parameters':
+			{
+				'split': False
+			},
+			'state':
+			{
+				'instance': 'on',
+				'value': True
+			}
+		},
+		{
+			'retrievable': True,
+			'type': 'devices.capabilities.range',
+			'parameters':
+			{
+				'instance': 'brightness',
+				'unit': 'unit.percent',
+				'random_access': True,
+				'looped': False,
+				'range':
+				{
+					'min': 1,
+					'max': 100,
+					'precision': 1
+				}
+			},
+			'state':
+			{
+				'instance': 'brightness',
+				'value': 100
+			}
+		}]
+	}],
+	'devices': [
+	{
+		'id': '5ddec6cf-c3a7-4650-bb09-8e23e3f74f4e',
+		'name': 'Лампочка',
+		'aliases': ['Лампочка 1'],
+		'type': 'devices.types.light',
+		'external_id': 'bf82aec690902ce3acawrj',
+		'skill_id': 'T',
+		'household_id': 'fe5b78a5-6349-4331-abbf-67ea907b67dc',
+		'room': '256d0749-d0bd-4daf-80a6-ff9ee4f86ce5',
+		'groups': ['c8e2fe66-7b43-46d5-a66c-cf4c9b6e5a20'],
+		'capabilities': [
+		{
+			'reportable': True,
+			'retrievable': True,
+			'type': 'devices.capabilities.range',
+			'parameters':
+			{
+				'instance': 'brightness',
+				'unit': 'unit.percent',
+				'random_access': True,
+				'looped': False,
+				'range':
+				{
+					'min': 1,
+					'max': 100,
+					'precision': 1
+				}
+			},
+			'state':
+			{
+				'instance': 'brightness',
+				'value': 100
+			},
+			'last_updated': 1677693265.383149
+		},
+		{
+			'reportable': True,
+			'retrievable': True,
+			'type': 'devices.capabilities.color_setting',
+			'parameters':
+			{
+				'color_model': 'hsv',
+				'temperature_k':
+				{
+					'min': 1500,
+					'max': 6500
+				}
+			},
+			'state':
+			{
+				'instance': 'temperature_k',
+				'value': 5600
+			},
+			'last_updated': 1677693265.383149
+		},
+		{
+			'reportable': True,
+			'retrievable': True,
+			'type': 'devices.capabilities.on_off',
+			'parameters':
+			{
+				'split': False
+			},
+			'state':
+			{
+				'instance': 'on',
+				'value': True
+			},
+			'last_updated': 1677693265.383149
+		}],
+		'properties': []
+	},
+	{
+		'id': '68aab3ac-e0b6-4386-9b11-82c76535f5ca',
+		'name': 'Розетка',
+		'aliases': [],
+		'type': 'devices.types.socket',
+		'external_id': 'bfe0f4ea454d511356078g',
+		'skill_id': 'T',
+		'household_id': 'fe5b78a5-6349-4331-abbf-67ea907b67dc',
+		'room': '256d0749-d0bd-4daf-80a6-ff9ee4f86ce5',
+		'groups': [],
+		'capabilities': [
+		{
+			'reportable': True,
+			'retrievable': True,
+			'type': 'devices.capabilities.on_off',
+			'parameters':
+			{
+				'split': False
+			},
+			'state':
+			{
+				'instance': 'on',
+				'value': False
+			},
+			'last_updated': 1677694603.426
+		}],
+		'properties': [
+		{
+			'type': 'devices.properties.float',
+			'reportable': True,
+			'retrievable': True,
+			'parameters':
+			{
+				'instance': 'voltage',
+				'unit': 'unit.volt'
+			},
+			'state':
+			{
+				'instance': 'voltage',
+				'value': 219.20000000000002
+			},
+			'state_changed_at': 1677694614.368,
+			'last_updated': 1677694614.368
+		},
+		{
+			'type': 'devices.properties.float',
+			'reportable': True,
+			'retrievable': True,
+			'parameters':
+			{
+				'instance': 'power',
+				'unit': 'unit.watt'
+			},
+			'state':
+			{
+				'instance': 'power',
+				'value': 0
+			},
+			'state_changed_at': 1677612758.566,
+			'last_updated': 1677694614.368
+		},
+		{
+			'type': 'devices.properties.float',
+			'reportable': True,
+			'retrievable': True,
+			'parameters':
+			{
+				'instance': 'amperage',
+				'unit': 'unit.ampere'
+			},
+			'state':
+			{
+				'instance': 'amperage',
+				'value': 0
+			},
+			'state_changed_at': 1677612758.566,
+			'last_updated': 1677694614.368
+		}]
+	},
+	{
+		'id': 'b6a48753-7b36-4868-8a26-54f872aa1135',
+		'name': 'Станция Мини',
+		'aliases': [],
+		'type': 'devices.types.smart_speaker.yandex.station.mini_2',
+		'external_id': 'M00Y2E600MHHTK.yandexmini_2',
+		'skill_id': 'Q',
+		'household_id': 'fe5b78a5-6349-4331-abbf-67ea907b67dc',
+		'room': '256d0749-d0bd-4daf-80a6-ff9ee4f86ce5',
+		'groups': [],
+		'capabilities': [],
+		'properties': [],
+		'quasar_info':
+		{
+			'device_id': 'M00Y2E600MHHTK',
+			'platform': 'yandexmini_2'
+		}
+	},
+	{
+		'id': 'c486ecba-baab-4d34-81e2-a751280721de',
+		'name': 'Лампочка',
+		'aliases': [],
+		'type': 'devices.types.light',
+		'external_id': 'bf17be16d8182258b4hfhr',
+		'skill_id': 'T',
+		'household_id': 'fe5b78a5-6349-4331-abbf-67ea907b67dc',
+		'room': '256d0749-d0bd-4daf-80a6-ff9ee4f86ce5',
+		'groups': ['c8e2fe66-7b43-46d5-a66c-cf4c9b6e5a20'],
+		'capabilities': [
+		{
+			'reportable': True,
+			'retrievable': True,
+			'type': 'devices.capabilities.range',
+			'parameters':
+			{
+				'instance': 'brightness',
+				'unit': 'unit.percent',
+				'random_access': True,
+				'looped': False,
+				'range':
+				{
+					'min': 1,
+					'max': 100,
+					'precision': 1
+				}
+			},
+			'state':
+			{
+				'instance': 'brightness',
+				'value': 100
+			},
+			'last_updated': 1677693266.3995366
+		},
+		{
+			'reportable': True,
+			'retrievable': True,
+			'type': 'devices.capabilities.color_setting',
+			'parameters':
+			{
+				'color_model': 'hsv',
+				'temperature_k':
+				{
+					'min': 1500,
+					'max': 6500
+				}
+			},
+			'state':
+			{
+				'instance': 'temperature_k',
+				'value': 5600
+			},
+			'last_updated': 1677693266.3995366
+		},
+		{
+			'reportable': True,
+			'retrievable': True,
+			'type': 'devices.capabilities.on_off',
+			'parameters':
+			{
+				'split': False
+			},
+			'state':
+			{
+				'instance': 'on',
+				'value': True
+			},
+			'last_updated': 1677693266.3995366
+		}],
+		'properties': []
+	},
+	{
+		'id': 'caac70ed-81f7-400b-947d-9ed35897c66e',
+		'name': 'Лампочка',
+		'aliases': [],
+		'type': 'devices.types.light',
+		'external_id': 'bf055280443f9a1ff74a3u',
+		'skill_id': 'T',
+		'household_id': 'fe5b78a5-6349-4331-abbf-67ea907b67dc',
+		'room': '256d0749-d0bd-4daf-80a6-ff9ee4f86ce5',
+		'groups': ['c8e2fe66-7b43-46d5-a66c-cf4c9b6e5a20'],
+		'capabilities': [
+		{
+			'reportable': True,
+			'retrievable': True,
+			'type': 'devices.capabilities.range',
+			'parameters':
+			{
+				'instance': 'brightness',
+				'unit': 'unit.percent',
+				'random_access': True,
+				'looped': False,
+				'range':
+				{
+					'min': 1,
+					'max': 100,
+					'precision': 1
+				}
+			},
+			'state':
+			{
+				'instance': 'brightness',
+				'value': 100
+			},
+			'last_updated': 1677693267.1009028
+		},
+		{
+			'reportable': True,
+			'retrievable': True,
+			'type': 'devices.capabilities.color_setting',
+			'parameters':
+			{
+				'color_model': 'hsv',
+				'temperature_k':
+				{
+					'min': 1500,
+					'max': 6500
+				}
+			},
+			'state':
+			{
+				'instance': 'temperature_k',
+				'value': 5600
+			},
+			'last_updated': 1677693267.1009028
+		},
+		{
+			'reportable': True,
+			'retrievable': True,
+			'type': 'devices.capabilities.on_off',
+			'parameters':
+			{
+				'split': False
+			},
+			'state':
+			{
+				'instance': 'on',
+				'value': True
+			},
+			'last_updated': 1677693267.1009028
+		}],
+		'properties': []
+	},
+	{
+		'id': 'd66e4886-5a2a-4573-af0a-514f380d96b9',
+		'name': 'Лампочка',
+		'aliases': [],
+		'type': 'devices.types.light',
+		'external_id': 'bf6865da8342ac263acu7r',
+		'skill_id': 'T',
+		'household_id': 'fe5b78a5-6349-4331-abbf-67ea907b67dc',
+		'room': '256d0749-d0bd-4daf-80a6-ff9ee4f86ce5',
+		'groups': ['c8e2fe66-7b43-46d5-a66c-cf4c9b6e5a20'],
+		'capabilities': [
+		{
+			'reportable': True,
+			'retrievable': True,
+			'type': 'devices.capabilities.range',
+			'parameters':
+			{
+				'instance': 'brightness',
+				'unit': 'unit.percent',
+				'random_access': True,
+				'looped': False,
+				'range':
+				{
+					'min': 1,
+					'max': 100,
+					'precision': 1
+				}
+			},
+			'state':
+			{
+				'instance': 'brightness',
+				'value': 100
+			},
+			'last_updated': 1677693267.522264
+		},
+		{
+			'reportable': True,
+			'retrievable': True,
+			'type': 'devices.capabilities.color_setting',
+			'parameters':
+			{
+				'color_model': 'hsv',
+				'temperature_k':
+				{
+					'min': 1500,
+					'max': 6500
+				}
+			},
+			'state':
+			{
+				'instance': 'temperature_k',
+				'value': 5600
+			},
+			'last_updated': 1677693267.522264
+		},
+		{
+			'reportable': True,
+			'retrievable': True,
+			'type': 'devices.capabilities.on_off',
+			'parameters':
+			{
+				'split': False
+			},
+			'state':
+			{
+				'instance': 'on',
+				'value': True
+			},
+			'last_updated': 1677693267.522264
+		}],
+		'properties': []
+	}],
+	'scenarios': [
+	{
+		'id': '17a9751d-70be-4831-b33e-b1b61a1d85b8',
+		'name': 'Я ухожу',
+		'is_active': True
+	},
+	{
+		'id': '5ac05200-c898-4015-bc30-16cf3b973de6',
+		'name': 'Температура',
+		'is_active': True
+	},
+	{
+		'id': '74d1f8f7-ca69-4e99-a3fc-0ae963b12436',
+		'name': 'Спокойной ночи',
+		'is_active': True
+	},
+	{
+		'id': '7a6a70c9-7713-4612-8f2d-6640b7624c69',
+		'name': 'Хахахахах',
+		'is_active': True
+	},
+	{
+		'id': 'c48458f8-8fd0-4ee0-a779-6a50538d7f23',
+		'name': 'Будильник',
+		'is_active': False
+	},
+	{
+		'id': 'd6ff8200-7a8d-4ab0-ba5b-7ebd703cb8db',
+		'name': 'Звонок',
+		'is_active': True
+	},
+	{
+		'id': 'f22603ce-67a8-4dea-b859-b5d67d823496',
+		'name': 'Я пришёл',
+		'is_active': True
+	}],
+	'households': [
+	{
+		'id': 'fe5b78a5-6349-4331-abbf-67ea907b67dc',
+		'name': 'Мой дом'
+	}]
+}
