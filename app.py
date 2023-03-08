@@ -117,10 +117,21 @@ class App(customtkinter.CTk):
                     label2_sp[-1].pack(pady=6, padx=10)
                     ofline_sp.append(a[1])
 
+            for i in range(len(info['groups'])): 
+                frame_sp.append(customtkinter.CTkFrame(master=self.home_frame))
+                label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info['groups'][i]["name"]))
+                label_sp[i].pack(pady=6, padx=10)
+
+                if i%3==0: 
+                    y += 1
+                    x = 0
+                x+=1
+                frame_sp[i].grid(row=y, column=x, padx=20, pady=10, sticky="nsew")
+
             for i in range(len(info['devices'])): 
                 frame_sp.append(customtkinter.CTkFrame(master=self.home_frame))
                 label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info['name'][i]))
-                label_sp[i].pack(pady=6, padx=10)
+                label_sp[-1].pack(pady=6, padx=10)
                 if (info['info'][i] == 'devices.types.light') or (info['info'][i] == 'devices.types.socket'): 
                     switch_var_sp.append(customtkinter.StringVar(value=str(info["state"][i_for_switch]).lower()))
                     for_switch_sp.append(functools.partial(switch_event, [info["devices"][i], i_for_switch, i]))
@@ -137,7 +148,7 @@ class App(customtkinter.CTk):
                     y += 1
                     x = 0
                 x+=1
-                frame_sp[i].grid(row=y, column=x, padx=20, pady=10, sticky="nsew")
+                frame_sp[i].grid(row=y, column=x, padx=20, pady=10, sticky="nsew")            
 
         all1()
 
@@ -161,14 +172,14 @@ class App(customtkinter.CTk):
                 headers={'Authorization': 'Bearer '+info["token"]}
                 r=requests.post(url,headers=headers)
 
-            for i in range(len(info["scenarios"][0])):
+            for i in range(len(info["scenarios"]["id"])):
                 if i%2==0: 
                     y += 1
                     x = 0
                 x+=1
-                for_button_sp.append(functools.partial(button_function, info["scenarios"][0][i]))
+                for_button_sp.append(functools.partial(button_function, info["scenarios"]['id'][i]))
                 frame_sp.append(customtkinter.CTkFrame(master=self.second_frame))
-                label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info["scenarios"][1][i]))
+                label_sp.append(customtkinter.CTkLabel(master=frame_sp[-1], justify=customtkinter.LEFT, text=info["scenarios"]["name"][i]))
                 frame_sp[i].grid(row=y, column=x, padx=20, pady=10, sticky="nsew")
                 label_sp[i].pack(pady=0, padx=0)
                 button_sp.append(customtkinter.CTkButton(master=frame_sp[-1], text="", image=self.image_icon_image, command=for_button_sp[-1]))
@@ -229,7 +240,7 @@ class App(customtkinter.CTk):
 def button_function():
     print("ok")
 
-from ya_info import info1
+from ya_info2 import info1
 global info
 info = info1()
 if info!=0:    
