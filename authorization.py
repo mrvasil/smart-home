@@ -12,7 +12,7 @@ client_id = secrets.client_id
 client_secret = secrets.client_secret
 baseurl = 'https://oauth.yandex.ru/'
 app = Flask(__name__)
-text = """<h1 style="margin: 100;width: 1100px;" class="text-justify">Отлично, Вы авторизованны<br>Теперь нажмите "Я авторизовался" и откройте прилоежение заново.</h1>"""
+text = """<h1 style="margin: 100;width: 1100px;" class="text-justify">Отлично, Вы авторизованны<br>Теперь в приложении нажмите "Я авторизовался" и откройте его заново.</h1>"""
 
 
 dict1={}
