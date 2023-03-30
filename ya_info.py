@@ -36,5 +36,5 @@ def info1():
     dict['scenarios'].append(name)
 
     dict['token']=token
-
+    print(dict)
     return dict
