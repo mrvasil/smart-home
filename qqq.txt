@@ -1,0 +1,22 @@
+{
+    'devices': [
+        '5ddec6cf-c3a7-4650-bb09-8e23e3f74f4e', '68aab3ac-e0b6-4386-9b11-82c76535f5ca', 'b6a48753-7b36-4868-8a26-54f872aa1135', 'c486ecba-baab-4d34-81e2-a751280721de', 'caac70ed-81f7-400b-947d-9ed35897c66e', 'd66e4886-5a2a-4573-af0a-514f380d96b9'
+        ], 
+
+        'state': [False, True, False, False, False],
+
+        'info': ['devices.types.light', 'devices.types.socket', 'devices.types.smart_speaker.yandex.station.mini_2', 'devices.types.light', 'devices.types.light', 'devices.types.light'], 
+        
+        'name': ['Лампочка', 'Розетка', 'Станция Мини', 'Лампочка', 'Лампочка', 'Лампочка'], 
+
+        'groups': [
+            {
+                'devices': ['5ddec6cf-c3a7-4650-bb09-8e23e3f74f4e', 'c486ecba-baab-4d34-81e2-a751280721de', 'caac70ed-81f7-400b-947d-9ed35897c66e', 'd66e4886-5a2a-4573-af0a-514f380d96b9'], 
+                'name': 'Люстра', 
+                'id': 'c8e2fe66-7b43-46d5-a66c-cf4c9b6e5a20'
+                
+                }
+            ], 
+            
+        'scenarios': {'id': ['17a9751d-70be-4831-b33e-b1b61a1d85b8', '5ac05200-c898-4015-bc30-16cf3b973de6', '74d1f8f7-ca69-4e99-a3fc-0ae963b12436', '7a6a70c9-7713-4612-8f2d-6640b7624c69', 'c48458f8-8fd0-4ee0-a779-6a50538d7f23', 'd6ff8200-7a8d-4ab0-ba5b-7ebd703cb8db', 'f22603ce-67a8-4dea-b859-b5d67d823496'], 'name': ['Я ухожу', 'Температура', 'Спокойной ночи', 'Хахахахах', 'Будильник', 'Звонок', 'Я пришёл']}, 'token': 'y0_AgAAAAAnPIZcAAkRogAAAADdc12gbj_9iUP5SOaK4nbYPbCBE350HDc'
+}
