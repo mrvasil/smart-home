@@ -9,8 +9,7 @@
 
 **Description**: A desktop Windows application for managing smart
 devices from **Yandex**, similar in interface and capabilities
-to the mobile application ["Home with
-Alice"](https://apps.apple.com/ru/app/%D0%B4%D0%BE%D0%BC-%D1%81-%D0%B0%D0%BB%D0%B8%D1%81%D0%BE%D0%B9/id1582810683)
+to the mobile application ["Дом с Алисой"](https://apps.apple.com/ru/app/%D0%B4%D0%BE%D0%BC-%D1%81-%D0%B0%D0%BB%D0%B8%D1%81%D0%BE%D0%B9/id1582810683)
 
 **Relevance:** At the moment, Yandex offers only a mobile version of the application (IOS, Android) for managing smart home devices. My project
 
@@ -70,7 +69,7 @@ of work
 **New interface:**
 ![](Smart-Home-images/new_interface.png)
 
-**Feedback and questions :D --**
+**Feedback and questions :D -**
 [**\@mrvasil**](https://t.me/mrvasil)
 
 <br><br><br><br>
