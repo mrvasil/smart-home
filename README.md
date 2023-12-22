@@ -1,44 +1,79 @@
-
-
 <h1>Smart Home</h1>
 
-**created by [@mrvasil](https://t.me/mrvasil)**<br>
-[video](https://clck.ru/33csdS) of working<br>
-<a href="site/Smart_home.exe">exe</a> for Windows.
+**Project by Alexey Vasiliev**
+**([\@mrvasil](https://t.me/mrvasil))**
 
-<h3>Description:</h3> An application for managing Yandex smart devices on a computer, similar in interface and capabilities to the 
+**[Git-repo with interface](https://github.com/mrvasil/smart-home-interface)**
 
-[mobile version](https://apps.apple.com/ru/app/%D0%B4%D0%BE%D0%BC-%D1%81-%D0%B0%D0%BB%D0%B8%D1%81%D0%BE%D0%B9/id1582810683)
+<br><br>
 
+**Description**: A desktop Windows application for managing smart
+devices from **Yandex**, similar in interface and capabilities
+to the mobile application ["Home with
+Alice"](https://apps.apple.com/ru/app/%D0%B4%D0%BE%D0%BC-%D1%81-%D0%B0%D0%BB%D0%B8%D1%81%D0%BE%D0%B9/id1582810683)
 
-<h3>Technologies:</h3>
+**Relevance:** At the moment, Yandex offers only a mobile version of the application (IOS, Android) for managing smart home devices. My project
 
-- Yandex OAuth 2.0, Yandex API (IOT)
-- Python (CustomTkinter and a few others) - frontend (client part)
-- Python (several different libraries for API communication,
+allows you to control devices from a computer, and in the future, a
+web version of the application may be developed.
 
-  main one - requests) - backend (client part)
+**Application functions:**
 
-- Python (Flask, requests, etc.) - authorization (server part)
-- OS - Windows
-- Auto-py-to-exe, Pyinstaller, Inno setup compiler - exe file and installer
+> ● View all connected devices
+>
+> ● Turning on/off some devices
+>
+> ● Launching scenarios (executing commands by time/events) and more
 
-<h3>Capabilities:</h3>
+**Technologies:**
 
-- View all connected devices
-- Turning on/off some devices
-- Running scenarios
+> ● Yandex OAuth 2.0, Yandex API
+> [(IOT)](https://yandex.ru/dev/dialogs/smart-home/doc/concepts/platform-protocol.html)
+>
+> ● Python (CustomTkinter and a few others) - frontend (client part)
+> ● Python (several different libraries for connecting with API,
+>
+> the main one is requests) - backend (client part)
+>
+> ● Python (Flask, requests, etc.) - authorization (server part) 
+>
+> ● Windows - OS
+>
+> ● Auto-py-to-exe, Pyinstaller, Inno setup compiler - exe file and
+> installer
 
-and more
+**Plans:**
 
-<h3>Plans:</h3>
+> ● Rewrite the interface in HTML, as
+> current libraries are slow and inconvenient for use in
+> development
+>
+> ● Add support for a larger number of device types (now
+> some devices are displayed without the possibility
+>
+> of turning on/off and setting, and therefore without the option
+> of control) ● Add functions that increase the convenience of use
+>
+> (for example: add division of devices into groups. Now all
+> devices are displayed separately)
+>
+> ● Build the project for Linux, MacOS(?)
 
-- Build the project for Linux, MacOS(?)
-- Rewrite the interface in HTML etc., probably in React JS because current libraries are slow and inconvenient for coding
-- Add support for a larger number of device types
+<h2>Interface:</h2>
 
-  (currently, most are simply displayed, without the possibility, and therefore without a switch for turning on/off and setting)
+[**Video**](https://drive.google.com/file/d/1JX4j8V-7iblz9bi7WjmRfu32kN0pBvoW/view?usp=sharing)
+of work
 
-<h3>Interface:</h3>
-
+**Screenshot of the current version of the interface:**
 ![](Smart-Home-images/screen.png)
+
+**New interface:**
+![](Smart-Home-images/new_interface.png)
+
+**Feedback and questions :D --**
+[**\@mrvasil**](https://t.me/mrvasil)
+
+<br><br><br><br>
+
+**Beautiful poster:**
+![](Smart-Home-images/SMART_HOME.png)
